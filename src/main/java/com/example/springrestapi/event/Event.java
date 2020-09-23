@@ -2,14 +2,17 @@ package com.example.springrestapi.event;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter @Setter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id")   // to prevent association dependency
 @Builder @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Event {
 
+    @Id @GeneratedValue
     private Integer id;
     private String name;
     private String description;
@@ -23,5 +26,7 @@ public class Event {
     private int limitOfEnrollment;
     private boolean offline;
     private boolean free;
+
+    @Enumerated(EnumType.STRING)
     private EventStatus eventStatus;
 }
